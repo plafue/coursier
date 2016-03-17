@@ -9,6 +9,7 @@ import java.util.concurrent.{ ConcurrentHashMap, Executors, ExecutorService }
 import java.util.regex.Pattern
 
 import coursier.ivy.IvyRepository
+import coursier.net.EnrichedURL
 
 import scala.annotation.tailrec
 
@@ -282,8 +283,8 @@ object Cache {
     * @param s
     * @return
     */
-  def url(s: String): URL =
-    new URL(null, s, handlerFor(s).orNull)
+  def url(s: String): EnrichedURL =
+    new EnrichedURL(new URL(null, s, handlerFor(s).orNull))
 
   private def download(
     artifact: Artifact,
